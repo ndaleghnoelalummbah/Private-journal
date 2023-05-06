@@ -15,6 +15,7 @@ export default function App(){
         <img src={driver} alt="driver" height="250px" width="350px" />
       </div>
       <FormikRenderProps />
+      
     </div>
   )
 }

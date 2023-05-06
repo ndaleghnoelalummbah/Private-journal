@@ -5,11 +5,15 @@ import FormikControl from "../FormikControl/FormikControl";
 import styles from "./FormikRenderProps.module.css";
 export default function FormikRenderProps() {
   const [submitting, setSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [isConfirm, setIsConfirm] = useState(false);
+  const [passType, setPassType] = useState("password");
+  const [isVissible,setIsVissible] = useState(false)
   const options = [
     { key: "I have a car", value: "I have a car" },
     { key: "I need a car", value: "I need a car" },
   ];
-  const initialValues = {
+  const [initialValues, setInitialValues] = useState({
     radioOption: "",
     firstName: "",
     lastName: "",
@@ -18,8 +22,8 @@ export default function FormikRenderProps() {
     phoneNumber: "",
     city: "",
     inviteCode: "",
-  };
-
+  });
+  const [initialValue, setInitialValue] = useState(initialValues);
   const regEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   //const regEX = /^(([^<>()\[\]\\.,;:\s@"]+(.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
   const validationSchema = Yup.object().shape({
@@ -56,16 +60,43 @@ export default function FormikRenderProps() {
   //   console.log("form data", values);
   //   console.log(55);
   // }
+  const handleConfirm = () => {
+        setSubmitted(false);
+        alert("you have sucecessfully registered");
+       };
   const onSubmit = (values, onSubmitProps) => {
-    onSubmitProps.setSubmitting(true);
+    setInitialValue({
+      radioOption: values.radioOption,
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      password: values.password,
+      phoneNumber: values.phoneNumber,
+      city: values.city,
+      inviteCode: values.inviteCode,
+    });
+    //onSubmitProps.setSubmitting(true);
     console.log("form data", values);
-    console.log("submit props", onSubmitProps);
-    console.log(55);
-    alert(JSON.stringify(values, null, 8));
-    onSubmitProps.setSubmitting(false);
-    onSubmitProps.resetForm();
-  };
+    console.log("form input", initialValue);
+    console.log(values.firstName);
+    //onSubmitProps.setSubmitting(false);
+    // alert(JSON.stringify(values, null, 8));
+    setSubmitted(true);
+    // onSubmitProps.resetForm();
+     };
 
+  const handleEdit = () => {
+    setSubmitted(false);
+    alert("ok");
+  };
+const handleVissiblity = ()=>{
+  setPassType("text");
+  setIsVissible((prev)=>!prev);
+}
+const handleHideVissiblity = () => {
+  setPassType("password");
+  setIsVissible((prev) => !prev);
+};
   return (
     <div className={styles.baseForm}>
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
@@ -75,7 +106,7 @@ export default function FormikRenderProps() {
             <FormikControl control="input" type="text" label="first name" name="firstName" />
             <FormikControl control="input" type="text" label="last name" name="lastName" />
             <FormikControl control="input" type="email" label="email" name="email" />
-            <FormikControl control="input" type="password" label="password" name="password" />
+            <FormikControl control="input" type={passType} label="password" name="password" vissible={isVissible} handleVissiblity={handleVissiblity} handleHideVissiblity={handleHideVissiblity} />
             <FormikControl control="input" type="tel" label="phone number" name="phoneNumber" />
             <FormikControl control="input" type="text" label="city you'll drive in" name="city" />
             <FormikControl control="input" type="text" label="invite code(optional)" name="inviteCode" />
@@ -103,6 +134,26 @@ export default function FormikRenderProps() {
           </Form>
         )}
       </Formik>
+      <div className={styles.modal} style={{ display: submitted ? "block" : "none" }}>
+        <h3>sucessful input validation</h3>
+        <p>radio option:{initialValue.radioOption}</p>
+        <p>first name:{initialValue.firstName}</p>
+        <p>last name:{initialValue.lastName}</p>
+        <p>email:{initialValue.email}</p>
+        <p>password:{initialValue.password}</p>
+        <p>phone number:{initialValue.phoneNumber}</p>
+        <p>city:{initialValue.city}</p>
+        <p>invite code (optional):{initialValue.inviteCode}</p>
+        <hr />
+        <div className={styles.modalBtn}>
+          <button type="reset" className={styles.confirm} onClick={handleConfirm}>
+            Confirm
+          </button>
+          <button className={styles.close} onClick={handleEdit}>
+            Edit
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
