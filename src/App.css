@@ -1,4 +1,9 @@
 .App{
+  width: fit-content;
+  display: block;
+  margin: 0 auto;
+}
+.container{
   background-color: #F5E8E7;
   padding-bottom: 4% ;
   display: flex;
@@ -27,9 +32,10 @@ padding: 0;
  
 }
 img{
-  position: absolute;
-  bottom: -9em;
-  left: 9px;
+  /* position: absolute; */
+  position: relative;
+  top:46%;
+  left: -2.5em;
   border-radius: 0 260px 0 0;
   background-color: #FBDCD7;
   

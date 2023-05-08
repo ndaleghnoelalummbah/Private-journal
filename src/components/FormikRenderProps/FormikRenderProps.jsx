@@ -8,7 +8,7 @@ export default function FormikRenderProps() {
   const [submitted, setSubmitted] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
   const [passType, setPassType] = useState("password");
-  const [isVissible,setIsVissible] = useState(false)
+  const [isVissible, setIsVissible] = useState(false);
   const options = [
     { key: "I have a car", value: "I have a car" },
     { key: "I need a car", value: "I need a car" },
@@ -61,9 +61,9 @@ export default function FormikRenderProps() {
   //   console.log(55);
   // }
   const handleConfirm = () => {
-        setSubmitted(false);
-        alert("you have sucecessfully registered");
-       };
+    setSubmitted(false);
+    alert("you have sucecessfully registered");
+  };
   const onSubmit = (values, onSubmitProps) => {
     setInitialValue({
       radioOption: values.radioOption,
@@ -83,20 +83,20 @@ export default function FormikRenderProps() {
     // alert(JSON.stringify(values, null, 8));
     setSubmitted(true);
     // onSubmitProps.resetForm();
-     };
+  };
 
   const handleEdit = () => {
     setSubmitted(false);
     alert("ok");
   };
-const handleVissiblity = ()=>{
-  setPassType("text");
-  setIsVissible((prev)=>!prev);
-}
-const handleHideVissiblity = () => {
-  setPassType("password");
-  setIsVissible((prev) => !prev);
-};
+  const handleVissiblity = () => {
+    setPassType("text");
+    setIsVissible((prev) => !prev);
+  };
+  const handleHideVissiblity = () => {
+    setPassType("password");
+    setIsVissible((prev) => !prev);
+  };
   return (
     <div className={styles.baseForm}>
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>

@@ -4,7 +4,6 @@ import TextError from "../TextError/TextError";
 import styles from "./RadioButton.module.css";
 
 export default function RadioButton(props) {
-    
   const { label, name, options, ...rest } = props;
 
   return (
@@ -26,7 +25,7 @@ export default function RadioButton(props) {
           });
         }}
       </Field>
-      
+
       <ErrorMessage name={name} component={TextError} />
     </div>
   );
