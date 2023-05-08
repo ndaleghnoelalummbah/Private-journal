@@ -40,3 +40,16 @@ img{
   background-color: #FBDCD7;
   
 }
+
+@media only screen and (max-width: 640px) {
+  /* For mobile phones: */
+  .container{
+  display: flex;
+  flex-direction: column;
+  border-radius: 32px;
+ width: fit-content;
+}
+}
+
+
+
