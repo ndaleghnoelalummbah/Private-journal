@@ -2,7 +2,6 @@
   width: fit-content;
   display: block;
   margin:0 auto;
-  background-color: aquamarine;
 }
 .container{
   background-color: #F5E8E7;
@@ -59,9 +58,8 @@ img{
    padding: 22px 42px;
    background-color: aqua;
 }
-}
 .App{
   width: 90%;
   margin: 0 auto;
 }
-
+}
