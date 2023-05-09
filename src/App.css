@@ -1,7 +1,8 @@
 .App{
   width: fit-content;
   display: block;
-  margin: 0 auto;
+  margin:0 auto;
+  background-color: aquamarine;
 }
 .container{
   background-color: #F5E8E7;
@@ -13,7 +14,7 @@
   
 }
 .left{
-   width: 300px;
+   width: 320px;
    padding: 22px 42px;
 }
 h2{
@@ -47,9 +48,20 @@ img{
   display: flex;
   flex-direction: column;
   border-radius: 32px;
- width: fit-content;
+  /* padding: 0 2%; */
+ max-width: 360px;
+   background-color: tomato;
+ 
+}
+.left{
+   width: 77%;
+   
+   padding: 22px 42px;
+   background-color: aqua;
 }
 }
-
-
+.App{
+  width: 90%;
+  margin: 0 auto;
+}
 
