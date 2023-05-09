@@ -49,14 +49,12 @@ img{
   border-radius: 32px;
   /* padding: 0 2%; */
  max-width: 360px;
-   background-color: tomato;
  
 }
 .left{
    width: 77%;
    
    padding: 22px 42px;
-   background-color: aqua;
 }
 .App{
   width: 90%;
