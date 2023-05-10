@@ -47,17 +47,13 @@ img{
   display: flex;
   flex-direction: column;
   border-radius: 32px;
-  /* padding: 0 2%; */
- max-width: 360px;
- 
+  width: 100%;
 }
 .left{
-   width: 77%;
-   
-   padding: 22px 42px;
+  width: 77%;
+  padding: 22px 42px;
 }
 .App{
-  width: 90%;
-  margin: 0 auto;
-}
+  width: 100%;
+  }
 }
