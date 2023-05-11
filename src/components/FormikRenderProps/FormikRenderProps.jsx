@@ -6,7 +6,6 @@ import styles from "./FormikRenderProps.module.css";
 export default function FormikRenderProps() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [isConfirm, setIsConfirm] = useState(false);
   const [passType, setPassType] = useState("password");
   const [isVissible, setIsVissible] = useState(false);
   const options = [
@@ -55,14 +54,14 @@ export default function FormikRenderProps() {
       .required("required"),
     inviteCode: Yup.string(),
   });
-  // function onSubmit(values) {
-  //   // alert(JSON.stringify(values, null, 7));
-  //   console.log("form data", values);
-  //   console.log(55);
-  // }
+ 
   const handleConfirm = () => {
     setSubmitted(false);
     alert("you have sucecessfully registered");
+  };
+  const handleEdit = () => {
+    setSubmitted(false);
+    alert("ok");
   };
   const onSubmit = (values, onSubmitProps) => {
     setInitialValue({
@@ -75,20 +74,16 @@ export default function FormikRenderProps() {
       city: values.city,
       inviteCode: values.inviteCode,
     });
-    //onSubmitProps.setSubmitting(true);
+   // onSubmitProps.setSubmitting(true);
     console.log("form data", values);
     console.log("form input", initialValue);
-    console.log(values.firstName);
     //onSubmitProps.setSubmitting(false);
     // alert(JSON.stringify(values, null, 8));
     setSubmitted(true);
-    // onSubmitProps.resetForm();
+   //  onSubmitProps.resetForm();
+    
   };
 
-  const handleEdit = () => {
-    setSubmitted(false);
-    alert("ok");
-  };
   const handleVissiblity = () => {
     setPassType("text");
     setIsVissible((prev) => !prev);
@@ -97,12 +92,13 @@ export default function FormikRenderProps() {
     setPassType("password");
     setIsVissible((prev) => !prev);
   };
+  console.log(initialValue.radioOption);
   return (
     <div className={styles.baseForm}>
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         {(formik) => (
           <Form>
-            <FormikControl control="radio" type="radio" label="Become a driver" name="radioOption" options={options} />
+            <FormikControl control="radio" type="radio" label="Become a driver" name="radioOption" options={options} value="" />
             <FormikControl control="input" type="text" label="first name" name="firstName" />
             <FormikControl control="input" type="text" label="last name" name="lastName" />
             <FormikControl control="input" type="email" label="email" name="email" />
@@ -157,47 +153,3 @@ export default function FormikRenderProps() {
     </div>
   );
 }
-// const attributes = [
-//   {
-//     control: "input",
-//     type: "text",
-//     label: "first name",
-//     name: "firstName",
-//   },
-//   {
-//     control: "input",
-//     type: "text",
-//     label: "last name",
-//     name: "lastName",
-//   },
-//   {
-//     control: "input",
-//     type: "email",
-//     label: "email",
-//     name: "email",
-//   },
-//   {
-//     control: "input",
-//     type: "password",
-//     label: "password",
-//     name: "password",
-//   },
-//   {
-//     control: "input",
-//     type: "tel",
-//     label: "phone number",
-//     name: "phoneNumber",
-//   },
-//   {
-//     control: "input",
-//     type: "text",
-//     label: "city you'll drive in",
-//     name: "city",
-//   },
-//   {
-//     control: "input",
-//     type: "text",
-//     label: "invite code(optional)",
-//     name: "inviteCode",
-//   },
-// ];
