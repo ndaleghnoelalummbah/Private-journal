@@ -1,8 +1,9 @@
-.App {
+/* .App {
   width: fit-content;
   display: block;
   margin: 0 auto;
-}
+} */
+
 .container {
   background-color: #f5e8e7;
   padding-bottom: 4%;
@@ -52,7 +53,7 @@ img {
     width: 77%;
     padding: 22px 42px;
   }
-  .App {
+  /* .App {
     width: 100%;
-  }
+  } */
 }

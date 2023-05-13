@@ -6,6 +6,8 @@ import styles from "./FormikRenderProps.module.css";
 export default function FormikRenderProps() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [isConfirm, setIsConfirm] = useState(false);
+  const [nedEdit, setNeedEdit] = useState(false);
   const [passType, setPassType] = useState("password");
   const [isVissible, setIsVissible] = useState(false);
   const options = [
@@ -55,14 +57,17 @@ export default function FormikRenderProps() {
     inviteCode: Yup.string(),
   });
  
-  const handleConfirm = () => {
+  const handleConfirm = (onSubmitProps) => {
     setSubmitted(false);
     alert("you have sucecessfully registered");
+    onSubmitProps.resetForm();
+
   };
   const handleEdit = () => {
     setSubmitted(false);
-    alert("ok");
   };
+
+  
   const onSubmit = (values, onSubmitProps) => {
     setInitialValue({
       radioOption: values.radioOption,
@@ -127,29 +132,30 @@ export default function FormikRenderProps() {
                 <a href="">SignIn</a>
               </span>
             </p>
+
+            <div className={styles.modal} style={{ display: submitted ? "block" : "none" }}>
+              <h3>sucessful input validation</h3>
+              <p>radio option:{initialValue.radioOption}</p>
+              <p>first name:{initialValue.firstName}</p>
+              <p>last name:{initialValue.lastName}</p>
+              <p>email:{initialValue.email}</p>
+              <p>password:{initialValue.password}</p>
+              <p>phone number:{initialValue.phoneNumber}</p>
+              <p>city:{initialValue.city}</p>
+              <p>invite code (optional):{initialValue.inviteCode}</p>
+              <hr />
+              <div className={styles.modalBtn}>
+                <button type="reset" className={styles.confirm} onClick={handleConfirm}>
+                  Confirm
+                </button>
+                <button className={styles.close} type="button" onClick={handleEdit}>
+                  Edit
+                </button>
+              </div>
+            </div>
           </Form>
         )}
       </Formik>
-      <div className={styles.modal} style={{ display: submitted ? "block" : "none" }}>
-        <h3>sucessful input validation</h3>
-        <p>radio option:{initialValue.radioOption}</p>
-        <p>first name:{initialValue.firstName}</p>
-        <p>last name:{initialValue.lastName}</p>
-        <p>email:{initialValue.email}</p>
-        <p>password:{initialValue.password}</p>
-        <p>phone number:{initialValue.phoneNumber}</p>
-        <p>city:{initialValue.city}</p>
-        <p>invite code (optional):{initialValue.inviteCode}</p>
-        <hr />
-        <div className={styles.modalBtn}>
-          <button type="reset" className={styles.confirm} onClick={handleConfirm}>
-            Confirm
-          </button>
-          <button className={styles.close} onClick={handleEdit}>
-            Edit
-          </button>
-        </div>
-      </div>
     </div>
   );
 }
